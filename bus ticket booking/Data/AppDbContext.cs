@@ -1,31 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using bus_ticket_booking.Models;
-
+﻿using bus_ticket_booking.Models;
+using Microsoft.EntityFrameworkCore;
 namespace bus_ticket_booking.Data
+
 {
     public class AppDbContext : DbContext
     {
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Bus> Buses { get; set; }
-        public DbSet<sale> Sales { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
+        // Constructor untuk runtime (pakai dependency injection)
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
         }
 
+        // ✅ Constructor tambahan untuk design-time (agar Add-Migration bisa jalan)
+        public AppDbContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // buat anggota kelompok inget ganti sesuai konfigurasi database masing-masing
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=db_vb2_bus_ticketing;Username=postgres;Password=admin123");
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Relasi 1:1 antara Passenger dan Sale
             modelBuilder.Entity<Passenger>()
                 .HasOne(p => p.Sale)
                 .WithOne(s => s.Passenger)
-                .HasForeignKey<sale>(s => s.PassengerId);
+                .HasForeignKey<Sale>(s => s.PassengerId);
 
             base.OnModelCreating(modelBuilder);
         }

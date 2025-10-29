@@ -1,6 +1,6 @@
 ﻿namespace bus_ticket_booking.Forms
 {
-    partial class PassengerForm1
+    partial class PassengerForm
     {
         /// <summary>
         /// Required designer variable.

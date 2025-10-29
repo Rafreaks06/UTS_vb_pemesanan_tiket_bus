@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace bus_ticket_booking.Forms
 {
-    public partial class PassengerForm1: Form
+    public partial class PassengerForm: Form
     {
-        public PassengerForm1()
+        public PassengerForm()
         {
             InitializeComponent();
         }

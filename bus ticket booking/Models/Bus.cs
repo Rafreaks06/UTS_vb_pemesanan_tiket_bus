@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,6 @@ namespace bus_ticket_booking.Models
         public int AvailableSeats { get; set; }
 
         // Satu bus bisa punya banyak penjualan tiket
-        public ICollection<sale> Sales { get; set; }
+        public ICollection<Sale> Sales { get; set; }
     }
 }
