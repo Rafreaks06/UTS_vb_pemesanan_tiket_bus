@@ -28,200 +28,223 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtBusName = new System.Windows.Forms.TextBox();
-            this.txtAsalKota = new System.Windows.Forms.TextBox();
-            this.txtJumlahKursi = new System.Windows.Forms.TextBox();
-            this.txtKotaTujuan = new System.Windows.Forms.TextBox();
-            this.txtHargaTiket = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dataGridViewBus = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBus)).BeginInit();
-            this.SuspendLayout();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            txtBusName = new System.Windows.Forms.TextBox();
+            txtAsalKota = new System.Windows.Forms.TextBox();
+            txtJumlahKursi = new System.Windows.Forms.TextBox();
+            txtKotaTujuan = new System.Windows.Forms.TextBox();
+            txtHargaTiket = new System.Windows.Forms.TextBox();
+            btnAdd = new System.Windows.Forms.Button();
+            btnUpdate = new System.Windows.Forms.Button();
+            btnDelete = new System.Windows.Forms.Button();
+            btnClear = new System.Windows.Forms.Button();
+            label7 = new System.Windows.Forms.Label();
+            dataGridViewBus = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBus).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(261, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(254, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bus Management Form";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label1.Location = new System.Drawing.Point(304, 10);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(254, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Bus Management Form";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nama Bus";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(24, 74);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(61, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Nama Bus";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 104);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Asal Kota";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(24, 120);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(56, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Asal Kota";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 143);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Harga Tiket";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(24, 165);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(68, 15);
+            label4.TabIndex = 3;
+            label4.Text = "Harga Tiket";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(276, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Kota Tujuan";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(322, 77);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(71, 15);
+            label5.TabIndex = 4;
+            label5.Text = "Kota Tujuan";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(276, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Jumlah Kursi ";
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(322, 122);
+            label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(77, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Jumlah Kursi ";
             // 
             // txtBusName
             // 
-            this.txtBusName.Location = new System.Drawing.Point(114, 64);
-            this.txtBusName.Name = "txtBusName";
-            this.txtBusName.Size = new System.Drawing.Size(143, 20);
-            this.txtBusName.TabIndex = 6;
+            txtBusName.Location = new System.Drawing.Point(133, 74);
+            txtBusName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtBusName.Name = "txtBusName";
+            txtBusName.Size = new System.Drawing.Size(166, 23);
+            txtBusName.TabIndex = 6;
+            txtBusName.TextChanged += txtBusName_TextChanged;
             // 
             // txtAsalKota
             // 
-            this.txtAsalKota.Location = new System.Drawing.Point(114, 104);
-            this.txtAsalKota.Name = "txtAsalKota";
-            this.txtAsalKota.Size = new System.Drawing.Size(143, 20);
-            this.txtAsalKota.TabIndex = 7;
+            txtAsalKota.Location = new System.Drawing.Point(133, 120);
+            txtAsalKota.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtAsalKota.Name = "txtAsalKota";
+            txtAsalKota.Size = new System.Drawing.Size(166, 23);
+            txtAsalKota.TabIndex = 7;
             // 
             // txtJumlahKursi
             // 
-            this.txtJumlahKursi.Location = new System.Drawing.Point(358, 106);
-            this.txtJumlahKursi.Name = "txtJumlahKursi";
-            this.txtJumlahKursi.Size = new System.Drawing.Size(177, 20);
-            this.txtJumlahKursi.TabIndex = 8;
+            txtJumlahKursi.Location = new System.Drawing.Point(418, 122);
+            txtJumlahKursi.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtJumlahKursi.Name = "txtJumlahKursi";
+            txtJumlahKursi.Size = new System.Drawing.Size(206, 23);
+            txtJumlahKursi.TabIndex = 8;
             // 
             // txtKotaTujuan
             // 
-            this.txtKotaTujuan.Location = new System.Drawing.Point(358, 67);
-            this.txtKotaTujuan.Name = "txtKotaTujuan";
-            this.txtKotaTujuan.Size = new System.Drawing.Size(177, 20);
-            this.txtKotaTujuan.TabIndex = 9;
+            txtKotaTujuan.Location = new System.Drawing.Point(418, 77);
+            txtKotaTujuan.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtKotaTujuan.Name = "txtKotaTujuan";
+            txtKotaTujuan.Size = new System.Drawing.Size(206, 23);
+            txtKotaTujuan.TabIndex = 9;
             // 
             // txtHargaTiket
             // 
-            this.txtHargaTiket.Location = new System.Drawing.Point(114, 136);
-            this.txtHargaTiket.Name = "txtHargaTiket";
-            this.txtHargaTiket.Size = new System.Drawing.Size(143, 20);
-            this.txtHargaTiket.TabIndex = 10;
+            txtHargaTiket.Location = new System.Drawing.Point(133, 157);
+            txtHargaTiket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtHargaTiket.Name = "txtHargaTiket";
+            txtHargaTiket.Size = new System.Drawing.Size(166, 23);
+            txtHargaTiket.TabIndex = 10;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(279, 138);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 11;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Location = new System.Drawing.Point(326, 159);
+            btnAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(88, 27);
+            btnAdd.TabIndex = 11;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(363, 138);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 12;
-            this.btnUpdate.Text = "Update ";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Location = new System.Drawing.Point(424, 159);
+            btnUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new System.Drawing.Size(88, 27);
+            btnUpdate.TabIndex = 12;
+            btnUpdate.Text = "Update ";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(460, 138);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 13;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Location = new System.Drawing.Point(537, 159);
+            btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new System.Drawing.Size(88, 27);
+            btnDelete.TabIndex = 13;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(561, 138);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 14;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
+            btnClear.Location = new System.Drawing.Point(654, 159);
+            btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new System.Drawing.Size(88, 27);
+            btnClear.TabIndex = 14;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(353, 200);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Daftar Bus";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label7.Location = new System.Drawing.Point(412, 231);
+            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(123, 25);
+            label7.TabIndex = 15;
+            label7.Text = "Daftar Bus";
+            label7.Click += label7_Click;
             // 
             // dataGridViewBus
             // 
-            this.dataGridViewBus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBus.Location = new System.Drawing.Point(0, 228);
-            this.dataGridViewBus.Name = "dataGridViewBus";
-            this.dataGridViewBus.Size = new System.Drawing.Size(882, 301);
-            this.dataGridViewBus.TabIndex = 16;
-            this.dataGridViewBus.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            dataGridViewBus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBus.Location = new System.Drawing.Point(0, 263);
+            dataGridViewBus.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dataGridViewBus.Name = "dataGridViewBus";
+            dataGridViewBus.Size = new System.Drawing.Size(1029, 347);
+            dataGridViewBus.TabIndex = 16;
+            dataGridViewBus.CellContentClick += dataGridView1_CellContentClick;
             // 
             // BusForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 552);
-            this.Controls.Add(this.dataGridViewBus);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtHargaTiket);
-            this.Controls.Add(this.txtKotaTujuan);
-            this.Controls.Add(this.txtJumlahKursi);
-            this.Controls.Add(this.txtAsalKota);
-            this.Controls.Add(this.txtBusName);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "BusForm";
-            this.Text = "BusForm";
-            this.Load += new System.EventHandler(this.BusForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBus)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1032, 637);
+            Controls.Add(dataGridViewBus);
+            Controls.Add(label7);
+            Controls.Add(btnClear);
+            Controls.Add(btnDelete);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnAdd);
+            Controls.Add(txtHargaTiket);
+            Controls.Add(txtKotaTujuan);
+            Controls.Add(txtJumlahKursi);
+            Controls.Add(txtAsalKota);
+            Controls.Add(txtBusName);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "BusForm";
+            Text = "BusForm";
+            Load += BusForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBus).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
