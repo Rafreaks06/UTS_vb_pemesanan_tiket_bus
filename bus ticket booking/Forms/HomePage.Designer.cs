@@ -28,88 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuPelanggan = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBus = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSale = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLaporan = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            fToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            menuPelanggan = new System.Windows.Forms.ToolStripMenuItem();
+            menuBus = new System.Windows.Forms.ToolStripMenuItem();
+            menuSale = new System.Windows.Forms.ToolStripMenuItem();
+            menuLaporan = new System.Windows.Forms.ToolStripMenuItem();
+            contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(components);
+            panel1 = new System.Windows.Forms.Panel();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fToolStripMenuItem,
-            this.menuPelanggan,
-            this.menuBus,
-            this.menuSale,
-            this.menuLaporan});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fToolStripMenuItem, menuPelanggan, menuBus, menuSale, menuLaporan });
+            menuStrip1.Location = new System.Drawing.Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            menuStrip1.Size = new System.Drawing.Size(933, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // fToolStripMenuItem
             // 
-            this.fToolStripMenuItem.Name = "fToolStripMenuItem";
-            this.fToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fToolStripMenuItem.Text = "File";
+            fToolStripMenuItem.Name = "fToolStripMenuItem";
+            fToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            fToolStripMenuItem.Text = "File";
             // 
             // menuPelanggan
             // 
-            this.menuPelanggan.Name = "menuPelanggan";
-            this.menuPelanggan.Size = new System.Drawing.Size(99, 20);
-            this.menuPelanggan.Text = "Data Passenger";
+            menuPelanggan.Name = "menuPelanggan";
+            menuPelanggan.Size = new System.Drawing.Size(99, 20);
+            menuPelanggan.Text = "Data Passenger";
+            menuPelanggan.Click += menuPelanggan_Click;
             // 
             // menuBus
             // 
-            this.menuBus.Name = "menuBus";
-            this.menuBus.Size = new System.Drawing.Size(68, 20);
-            this.menuBus.Text = "Data Bus ";
+            menuBus.Name = "menuBus";
+            menuBus.Size = new System.Drawing.Size(68, 20);
+            menuBus.Text = "Data Bus ";
+            menuBus.Click += menuBus_Click;
             // 
             // menuSale
             // 
-            this.menuSale.Name = "menuSale";
-            this.menuSale.Size = new System.Drawing.Size(40, 20);
-            this.menuSale.Text = "Sale";
+            menuSale.Name = "menuSale";
+            menuSale.Size = new System.Drawing.Size(40, 20);
+            menuSale.Text = "Sale";
+            menuSale.Click += menuSale_Click;
             // 
             // menuLaporan
             // 
-            this.menuLaporan.Name = "menuLaporan";
-            this.menuLaporan.Size = new System.Drawing.Size(62, 20);
-            this.menuLaporan.Text = "Laporan";
+            menuLaporan.Name = "menuLaporan";
+            menuLaporan.Size = new System.Drawing.Size(62, 20);
+            menuLaporan.Text = "Laporan";
+            menuLaporan.Click += menuLaporan_Click;
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 423);
-            this.panel1.TabIndex = 2;
+            panel1.Location = new System.Drawing.Point(0, 31);
+            panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(933, 488);
+            panel1.TabIndex = 2;
             // 
             // HomePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "HomePage";
-            this.Text = "HomePage";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(933, 519);
+            Controls.Add(panel1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "HomePage";
+            Text = "HomePage";
+            Load += HomePage_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

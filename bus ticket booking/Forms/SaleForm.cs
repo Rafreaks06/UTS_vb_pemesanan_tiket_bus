@@ -141,5 +141,10 @@ namespace bus_ticket_booking.Forms
             txtTotalPrice.Text = "";
             dtSaleDate.Value = DateTime.Now;
         }
+
+        private void comboPassenger_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
