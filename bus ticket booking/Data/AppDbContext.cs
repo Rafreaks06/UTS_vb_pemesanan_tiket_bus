@@ -23,7 +23,7 @@ namespace bus_ticket_booking.Data
             if (!optionsBuilder.IsConfigured)
             {
                 // buat anggota kelompok inget ganti sesuai konfigurasi database masing-masing
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=db_vb2_bus_ticketing;Username=postgres;Password=admin123");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=db_vb2_bus_ticketing;Username=postgres;Password=Admin");
             }
         }
 

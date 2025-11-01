@@ -48,10 +48,15 @@ namespace bus_ticket_booking.Forms
 
         private void menuLaporan_Click(object sender, EventArgs e)
         {
-            OpenForm(new ());
+            OpenForm(new());
         }
 
         private void HomePage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
