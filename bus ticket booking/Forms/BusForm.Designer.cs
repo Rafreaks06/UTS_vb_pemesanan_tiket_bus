@@ -116,7 +116,6 @@
             txtBusName.Name = "txtBusName";
             txtBusName.Size = new System.Drawing.Size(166, 23);
             txtBusName.TabIndex = 6;
-            txtBusName.TextChanged += txtBusName_TextChanged;
             // 
             // txtAsalKota
             // 
@@ -204,7 +203,6 @@
             label7.Size = new System.Drawing.Size(123, 25);
             label7.TabIndex = 15;
             label7.Text = "Daftar Bus";
-            label7.Click += label7_Click;
             // 
             // dataGridViewBus
             // 
@@ -214,7 +212,6 @@
             dataGridViewBus.Name = "dataGridViewBus";
             dataGridViewBus.Size = new System.Drawing.Size(1029, 347);
             dataGridViewBus.TabIndex = 16;
-            dataGridViewBus.CellContentClick += dataGridView1_CellContentClick;
             // 
             // BusForm
             // 
