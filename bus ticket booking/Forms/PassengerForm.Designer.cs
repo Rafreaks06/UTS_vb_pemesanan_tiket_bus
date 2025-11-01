@@ -84,9 +84,9 @@
             label4.Location = new System.Drawing.Point(51, 355);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(45, 15);
+            label4.Size = new System.Drawing.Size(36, 15);
             label4.TabIndex = 3;
-            label4.Text = "Alamat";
+            label4.Text = "Email";
             // 
             // contextMenuStrip1
             // 
@@ -185,7 +185,6 @@
             dataGridViewPassenger.Name = "dataGridViewPassenger";
             dataGridViewPassenger.Size = new System.Drawing.Size(640, 396);
             dataGridViewPassenger.TabIndex = 14;
-            dataGridViewPassenger.CellContentClick += dataGridView1_CellContentClick;
             // 
             // PassengerForm
             // 
