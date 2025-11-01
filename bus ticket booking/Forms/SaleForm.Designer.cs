@@ -78,7 +78,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(10, 200);
+            label4.Location = new System.Drawing.Point(10, 150);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(49, 15);
@@ -88,7 +88,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(10, 150);
+            label5.Location = new System.Drawing.Point(10, 200);
             label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(68, 15);
@@ -106,7 +106,7 @@
             // 
             // txtTotalPrice
             // 
-            txtTotalPrice.Location = new System.Drawing.Point(100, 150);
+            txtTotalPrice.Location = new System.Drawing.Point(100, 200);
             txtTotalPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtTotalPrice.Name = "txtTotalPrice";
             txtTotalPrice.ReadOnly = true;
@@ -115,7 +115,7 @@
             // 
             // dtSaleDate
             // 
-            dtSaleDate.Location = new System.Drawing.Point(100, 200);
+            dtSaleDate.Location = new System.Drawing.Point(100, 150);
             dtSaleDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             dtSaleDate.Name = "dtSaleDate";
             dtSaleDate.Size = new System.Drawing.Size(206, 23);
@@ -165,7 +165,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label6.Location = new System.Drawing.Point(410, 10);
+            label6.Location = new System.Drawing.Point(475, 10);
             label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(245, 25);
@@ -178,7 +178,7 @@
             dataGridView1.Location = new System.Drawing.Point(325, 50);
             dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new System.Drawing.Size(415, 375);
+            dataGridView1.Size = new System.Drawing.Size(575, 375);
             dataGridView1.TabIndex = 14;
             // 
             // label1
@@ -196,7 +196,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(759, 446);
+            ClientSize = new System.Drawing.Size(909, 446);
             Controls.Add(dataGridView1);
             Controls.Add(label6);
             Controls.Add(btnClear);

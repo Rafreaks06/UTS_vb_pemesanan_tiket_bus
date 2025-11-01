@@ -90,25 +90,26 @@ namespace bus_ticket_booking.Forms
         {
             if (_isInitializing) return;
             if (comboBus.SelectedValue == null) return;
-
-            int busId = (int)comboBus.SelectedValue;
+            if (!int.TryParse(comboBus.SelectedValue.ToString(), out int busId)) return;
 
             using var context = new AppDbContext();
             var bus = await context.Buses.FirstOrDefaultAsync(b => b.BusId == busId);
 
             if (bus != null)
                 txtTotalPrice.Text = bus.TicketPrice.ToString("N0");
+            else
+                txtTotalPrice.Clear();
         }
 
         private bool ValidateForm()
         {
-            if (comboPassenger.SelectedIndex == -1)
+            if (comboPassenger.SelectedIndex == -1 || comboPassenger.SelectedValue == null)
             {
                 MessageBox.Show("Pilih penumpang terlebih dahulu.");
                 return false;
             }
 
-            if (comboBus.SelectedIndex == -1)
+            if (comboBus.SelectedIndex == -1 || comboBus.SelectedValue == null)
             {
                 MessageBox.Show("Pilih bus terlebih dahulu.");
                 return false;
@@ -120,9 +121,15 @@ namespace bus_ticket_booking.Forms
                 return false;
             }
 
-            if (!decimal.TryParse(txtTotalPrice.Text, out _))
+            if (!decimal.TryParse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""), out decimal price) || price <= 0)
             {
-                MessageBox.Show("Harga harus berupa angka.");
+                MessageBox.Show("Harga harus berupa angka dan lebih dari 0.");
+                return false;
+            }
+
+            if (dtSaleDate.Value == DateTime.MinValue)
+            {
+                MessageBox.Show("Tanggal tidak valid.");
                 return false;
             }
 
@@ -136,13 +143,27 @@ namespace bus_ticket_booking.Forms
             try
             {
                 using var context = new AppDbContext();
+
+                int passengerId = (int)comboPassenger.SelectedValue;
+                int busId = (int)comboBus.SelectedValue;
+                decimal totalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""));
+
+                var passengerExists = await context.Passengers.AnyAsync(p => p.PassengerId == passengerId);
+                var busExists = await context.Buses.AnyAsync(b => b.BusId == busId);
+
+                if (!passengerExists || !busExists)
+                {
+                    MessageBox.Show("Data penumpang atau bus tidak valid.");
+                    return;
+                }
+
                 var sale = new Sale
                 {
-                    PassengerId = (int)comboPassenger.SelectedValue,
-                    BusId = (int)comboBus.SelectedValue,
+                    PassengerId = passengerId,
+                    BusId = busId,
                     SaleDate = DateTime.SpecifyKind(dtSaleDate.Value, DateTimeKind.Utc),
                     Quantity = 1,
-                    TotalPrice = decimal.Parse(txtTotalPrice.Text)
+                    TotalPrice = totalPrice
                 };
 
                 context.Sales.Add(sale);
@@ -155,7 +176,7 @@ namespace bus_ticket_booking.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.Message ?? ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Kesalahan: " + (ex.InnerException?.Message ?? ex.Message));
             }
         }
 
@@ -169,7 +190,7 @@ namespace bus_ticket_booking.Forms
 
             if (!ValidateForm()) return;
 
-            if (!int.TryParse(dataGridView1.CurrentRow.Cells["SaleId"].Value?.ToString(), out int saleId))
+            if (!int.TryParse(dataGridView1.CurrentRow.Cells["SaleId"].Value?.ToString(), out int saleId) || saleId <= 0)
             {
                 MessageBox.Show("ID penjualan tidak valid.");
                 return;
@@ -181,20 +202,27 @@ namespace bus_ticket_booking.Forms
                 var sale = await context.Sales.FindAsync(saleId);
                 if (sale == null)
                 {
-                    MessageBox.Show("Data tidak ditemukan di database.");
+                    MessageBox.Show("Data tidak ditemukan.");
                     return;
                 }
 
-                if (comboPassenger.SelectedValue == null || comboBus.SelectedValue == null)
+                int passengerId = (int)comboPassenger.SelectedValue;
+                int busId = (int)comboBus.SelectedValue;
+                decimal totalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""));
+
+                var passengerExists = await context.Passengers.AnyAsync(p => p.PassengerId == passengerId);
+                var busExists = await context.Buses.AnyAsync(b => b.BusId == busId);
+
+                if (!passengerExists || !busExists)
                 {
-                    MessageBox.Show("Pastikan penumpang dan bus dipilih.");
+                    MessageBox.Show("Data penumpang atau bus tidak valid.");
                     return;
                 }
 
-                sale.PassengerId = (int)comboPassenger.SelectedValue;
-                sale.BusId = (int)comboBus.SelectedValue;
+                sale.PassengerId = passengerId;
+                sale.BusId = busId;
                 sale.SaleDate = DateTime.SpecifyKind(dtSaleDate.Value, DateTimeKind.Utc);
-                sale.TotalPrice = decimal.Parse(txtTotalPrice.Text);
+                sale.TotalPrice = totalPrice;
 
                 context.Sales.Update(sale);
                 await context.SaveChangesAsync();
@@ -209,7 +237,7 @@ namespace bus_ticket_booking.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.Message ?? ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Kesalahan: " + (ex.InnerException?.Message ?? ex.Message));
             }
         }
 
@@ -221,7 +249,11 @@ namespace bus_ticket_booking.Forms
                 return;
             }
 
-            int saleId = (int)dataGridView1.CurrentRow.Cells["SaleId"].Value;
+            if (!int.TryParse(dataGridView1.CurrentRow.Cells["SaleId"].Value?.ToString(), out int saleId) || saleId <= 0)
+            {
+                MessageBox.Show("ID penjualan tidak valid.");
+                return;
+            }
 
             if (MessageBox.Show("Yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
@@ -230,7 +262,11 @@ namespace bus_ticket_booking.Forms
             {
                 using var context = new AppDbContext();
                 var sale = await context.Sales.FindAsync(saleId);
-                if (sale == null) return;
+                if (sale == null)
+                {
+                    MessageBox.Show("Data tidak ditemukan.");
+                    return;
+                }
 
                 context.Sales.Remove(sale);
                 await context.SaveChangesAsync();
@@ -242,7 +278,7 @@ namespace bus_ticket_booking.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.Message ?? ex.Message);
+                MessageBox.Show("Kesalahan: " + (ex.InnerException?.Message ?? ex.Message));
             }
         }
 
@@ -261,12 +297,12 @@ namespace bus_ticket_booking.Forms
 
         private async void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0 || dataGridView1.Rows.Count == 0) return;
 
             var row = dataGridView1.Rows[e.RowIndex];
-            if (row == null) return;
+            if (row == null || row.Cells["SaleId"]?.Value == null) return;
 
-            if (!int.TryParse(row.Cells["SaleId"].Value?.ToString(), out int saleId))
+            if (!int.TryParse(row.Cells["SaleId"].Value.ToString(), out int saleId) || saleId <= 0)
                 return;
 
             using var context = new AppDbContext();
@@ -285,21 +321,14 @@ namespace bus_ticket_booking.Forms
                 await LoadBusList();
             }
 
-            var passengers = (comboPassenger.DataSource as System.Collections.IEnumerable)?.Cast<Passenger>().ToList();
-            var buses = (comboBus.DataSource as System.Collections.IEnumerable)?.Cast<Bus>().ToList();
-
-            if (passengers != null && passengers.Any(p => p.PassengerId == sale.PassengerId))
+            if (comboPassenger.Items.Count > 0 && comboPassenger is ComboBox)
                 comboPassenger.SelectedValue = sale.PassengerId;
-            else
-                comboPassenger.SelectedIndex = -1;
 
-            if (buses != null && buses.Any(b => b.BusId == sale.BusId))
+            if (comboBus.Items.Count > 0 && comboBus is ComboBox)
                 comboBus.SelectedValue = sale.BusId;
-            else
-                comboBus.SelectedIndex = -1;
 
             txtTotalPrice.Text = sale.TotalPrice.ToString("N0");
-            dtSaleDate.Value = sale.SaleDate.ToLocalTime();
+            dtSaleDate.Value = sale.SaleDate == DateTime.MinValue ? DateTime.Now : sale.SaleDate.ToLocalTime();
 
             _isInitializing = false;
         }
