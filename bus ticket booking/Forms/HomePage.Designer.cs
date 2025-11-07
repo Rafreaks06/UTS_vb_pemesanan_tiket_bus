@@ -36,7 +36,6 @@
             menuSale = new System.Windows.Forms.ToolStripMenuItem();
             menuLaporan = new System.Windows.Forms.ToolStripMenuItem();
             contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(components);
-            panel1 = new System.Windows.Forms.Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,7 +45,7 @@
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            menuStrip1.Size = new System.Drawing.Size(933, 24);
+            menuStrip1.Size = new System.Drawing.Size(988, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -89,21 +88,11 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // panel1
-            // 
-            panel1.Location = new System.Drawing.Point(0, 31);
-            panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(933, 488);
-            panel1.TabIndex = 2;
-            panel1.Paint += panel1_Paint;
-            // 
             // HomePage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(933, 519);
-            Controls.Add(panel1);
+            ClientSize = new System.Drawing.Size(988, 575);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -126,6 +115,5 @@
         private System.Windows.Forms.ToolStripMenuItem menuSale;
         private System.Windows.Forms.ToolStripMenuItem menuLaporan;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Panel panel1;
     }
 }
