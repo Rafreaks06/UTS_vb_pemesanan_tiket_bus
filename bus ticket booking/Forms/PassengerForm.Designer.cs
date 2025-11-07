@@ -51,17 +51,17 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label1.Location = new System.Drawing.Point(82, 158);
+            label1.Location = new System.Drawing.Point(10, 10);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(326, 25);
+            label1.Size = new System.Drawing.Size(266, 25);
             label1.TabIndex = 0;
-            label1.Text = "Passenger Management Form";
+            label1.Text = "Passenger Management";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(51, 224);
+            label2.Location = new System.Drawing.Point(10, 50);
             label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(107, 15);
@@ -71,7 +71,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(51, 268);
+            label3.Location = new System.Drawing.Point(10, 100);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(90, 15);
@@ -81,7 +81,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(51, 355);
+            label4.Location = new System.Drawing.Point(10, 150);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(36, 15);
@@ -100,67 +100,67 @@
             // 
             // txtAlamat
             // 
-            txtAlamat.Location = new System.Drawing.Point(166, 352);
+            txtAlamat.Location = new System.Drawing.Point(150, 150);
             txtAlamat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtAlamat.Name = "txtAlamat";
-            txtAlamat.Size = new System.Drawing.Size(179, 23);
+            txtAlamat.Size = new System.Drawing.Size(206, 23);
             txtAlamat.TabIndex = 6;
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(166, 220);
+            txtName.Location = new System.Drawing.Point(150, 50);
             txtName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(179, 23);
+            txtName.Size = new System.Drawing.Size(206, 23);
             txtName.TabIndex = 7;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new System.Drawing.Point(166, 260);
+            txtPhone.Location = new System.Drawing.Point(150, 100);
             txtPhone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new System.Drawing.Size(179, 23);
+            txtPhone.Size = new System.Drawing.Size(206, 23);
             txtPhone.TabIndex = 8;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new System.Drawing.Point(374, 224);
+            btnAdd.Location = new System.Drawing.Point(10, 200);
             btnAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(88, 27);
+            btnAdd.Size = new System.Drawing.Size(346, 27);
             btnAdd.TabIndex = 9;
-            btnAdd.Text = "Add";
+            btnAdd.Text = "Tambah Penumpang";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new System.Drawing.Point(374, 262);
+            btnUpdate.Location = new System.Drawing.Point(10, 250);
             btnUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new System.Drawing.Size(88, 27);
+            btnUpdate.Size = new System.Drawing.Size(346, 27);
             btnUpdate.TabIndex = 10;
-            btnUpdate.Text = "Update ";
+            btnUpdate.Text = "Update Penumpang";
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new System.Drawing.Point(374, 303);
+            btnDelete.Location = new System.Drawing.Point(10, 300);
             btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new System.Drawing.Size(88, 27);
+            btnDelete.Size = new System.Drawing.Size(346, 27);
             btnDelete.TabIndex = 11;
-            btnDelete.Text = "Delete";
+            btnDelete.Text = "Hapus Penumpang";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
-            btnClear.Location = new System.Drawing.Point(374, 348);
+            btnClear.Location = new System.Drawing.Point(10, 350);
             btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(88, 27);
+            btnClear.Size = new System.Drawing.Size(346, 27);
             btnClear.TabIndex = 12;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label5.Location = new System.Drawing.Point(732, 66);
+            label5.Location = new System.Drawing.Point(550, 10);
             label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(207, 25);
@@ -180,17 +180,17 @@
             // dataGridViewPassenger
             // 
             dataGridViewPassenger.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPassenger.Location = new System.Drawing.Point(562, 115);
+            dataGridViewPassenger.Location = new System.Drawing.Point(370, 50);
             dataGridViewPassenger.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             dataGridViewPassenger.Name = "dataGridViewPassenger";
-            dataGridViewPassenger.Size = new System.Drawing.Size(640, 396);
+            dataGridViewPassenger.Size = new System.Drawing.Size(575, 325);
             dataGridViewPassenger.TabIndex = 14;
             // 
             // PassengerForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1239, 562);
+            ClientSize = new System.Drawing.Size(959, 386);
             Controls.Add(dataGridViewPassenger);
             Controls.Add(label5);
             Controls.Add(btnClear);
@@ -206,7 +206,7 @@
             Controls.Add(label1);
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Name = "PassengerForm";
-            Text = "PassengerForm1";
+            Text = "PassengerForm";
             Load += PassengerForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewPassenger).EndInit();
             ResumeLayout(false);
