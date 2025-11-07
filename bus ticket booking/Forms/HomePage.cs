@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace bus_ticket_booking.Forms
@@ -16,6 +10,11 @@ namespace bus_ticket_booking.Forms
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Membuka form baru dalam MDI parent. 
+        /// Jika form sudah terbuka, maka form tersebut akan diaktifkan.
+        /// </summary>
         private void OpenForm(Form newForm)
         {
             // Cek apakah form sudah terbuka
@@ -23,14 +22,17 @@ namespace bus_ticket_booking.Forms
             {
                 if (openForm.GetType() == newForm.GetType())
                 {
-                    openForm.Activate(); // Jika sudah, bawa ke depan
+                    openForm.Activate(); // Jika sudah terbuka, tampilkan di depan
                     return;
                 }
             }
-            //Jika belum terbuka, tampilkan sebagai child dari MDI container
+
+            // Jika belum terbuka, tampilkan sebagai child dari MDI container
             newForm.MdiParent = this.MdiParent;
+            newForm.WindowState = FormWindowState.Maximized; // agar form memenuhi layar MDI
             newForm.Show();
         }
+
         private void menuPelanggan_Click(object sender, EventArgs e)
         {
             OpenForm(new PassengerForm());
@@ -48,17 +50,20 @@ namespace bus_ticket_booking.Forms
 
         private void menuLaporan_Click(object sender, EventArgs e)
         {
-            OpenForm(new());
+            // Nanti bisa diganti dengan form laporan yang sudah kamu buat
+            // Contoh: OpenForm(new ReportForm());
+            MessageBox.Show("Fitur laporan belum tersedia.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void HomePage_Load(object sender, EventArgs e)
         {
-
+            // Tambahkan inisialisasi jika dibutuhkan
+            this.IsMdiContainer = false; // HomePage bukan MDI container, tapi child di dalam MainForm
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // Tidak digunakan, bisa dihapus jika tidak perlu
         }
     }
 }
