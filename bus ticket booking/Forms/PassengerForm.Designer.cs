@@ -190,7 +190,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(959, 386);
+            ClientSize = new System.Drawing.Size(959, 649);
             Controls.Add(dataGridViewPassenger);
             Controls.Add(label5);
             Controls.Add(btnClear);

@@ -128,16 +128,15 @@ namespace bus_ticket_booking.Forms
             return true; // semua validasi lulus
         }
 
-        // --- CEK APAKAH NAMA / EMAIL SUDAH DIGUNAKAN (UNTUK CEGAH DUPLIKASI) ---
+        // --- CEK DUPLIKASI EMAIL (NAMA BOLEH SAMA) ---
         private async Task<bool> IsDuplicateAsync(string name, string email, int excludeId = 0)
         {
-            var lowerName = name.Trim().ToLower();
             var lowerEmail = email.Trim().ToLower();
 
-            // cari data yang punya nama/email sama selain ID yang sedang diedit
+            // cek hanya berdasarkan email, bukan nama
             return await _context.Passengers.AnyAsync(p =>
                 p.PassengerId != excludeId &&
-                (p.FullName.ToLower() == lowerName || p.Email.ToLower() == lowerEmail));
+                p.Email.ToLower() == lowerEmail);
         }
 
         // --- TOMBOL TAMBAH DATA PENUMPANG ---
@@ -147,10 +146,10 @@ namespace bus_ticket_booking.Forms
             {
                 if (!ValidateInput()) return; // pastikan input valid
 
-                // Cek duplikasi data nama/email
+                // Cek duplikasi email
                 if (await IsDuplicateAsync(txtName.Text, txtAlamat.Text))
                 {
-                    MessageBox.Show("Nama atau email sudah digunakan penumpang lain.", "Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Email sudah digunakan oleh penumpang lain.", "Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -188,10 +187,10 @@ namespace bus_ticket_booking.Forms
             {
                 if (!ValidateInput()) return;
 
-                // Cek duplikasi data dengan pengecualian ID yang sedang diubah
+                // Cek duplikasi email selain ID yang sedang diubah
                 if (await IsDuplicateAsync(txtName.Text, txtAlamat.Text, selectedPassengerId))
                 {
-                    MessageBox.Show("Nama atau email sudah digunakan penumpang lain.", "Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Email sudah digunakan oleh penumpang lain.", "Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -236,7 +235,6 @@ namespace bus_ticket_booking.Forms
 
             try
             {
-                // --- HAPUS DATA ---
                 var passenger = await _context.Passengers.FindAsync(selectedPassengerId);
                 if (passenger != null)
                 {
@@ -244,7 +242,7 @@ namespace bus_ticket_booking.Forms
                     await _context.SaveChangesAsync();
 
                     MessageBox.Show("Data penumpang berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    await LoadPassengerDataAsync(); // refresh tabel
+                    await LoadPassengerDataAsync();
                     ClearForm();
                 }
             }

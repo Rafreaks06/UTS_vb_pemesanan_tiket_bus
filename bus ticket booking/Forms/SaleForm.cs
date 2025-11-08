@@ -5,66 +5,63 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using bus_ticket_booking.Data;
 using bus_ticket_booking.Models;
+using bus_ticket_booking.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace bus_ticket_booking.Forms
 {
     public partial class SaleForm : Form
     {
-        private bool _isInitializing; // digunakan agar event comboBox tidak berjalan saat data masih di-load
+        private bool _isInitializing;
 
         public SaleForm()
         {
             InitializeComponent();
 
-            // --- Inisialisasi event tombol CRUD ---
-            btnAdd.Click += BtnAdd_Click;       // tombol tambah data
-            btnUpdate.Click += BtnUpdate_Click; // tombol update data
-            btnDelete.Click += BtnDelete_Click; // tombol hapus data
-            btnClear.Click += BtnClear_Click;   // tombol bersihkan form
+            // Tombol CRUD
+            btnAdd.Click += BtnAdd_Click;
+            btnUpdate.Click += BtnUpdate_Click;
+            btnDelete.Click += BtnDelete_Click;
+            btnClear.Click += BtnClear_Click;
 
-            // --- Event comboBox dan DataGridView ---
+            // ComboBox & DataGrid
             comboPassenger.SelectedIndexChanged += ComboPassenger_SelectedIndexChanged;
             comboBus.SelectedIndexChanged += ComboBus_SelectedIndexChanged;
             dataGridView1.CellClick += DataGridView1_CellClick;
 
-            // --- Memulai load data dari database secara async ---
             _ = InitializeDataAsync();
         }
 
-        // --- Load semua data awal (penumpang, bus, penjualan) ---
+        // --- Load Data Awal ---
         private async Task InitializeDataAsync()
         {
-            _isInitializing = true; // mencegah event combo terpicu saat loading
+            _isInitializing = true;
             await LoadPassengerList();
             await LoadBusList();
             await LoadSalesList();
             _isInitializing = false;
         }
 
-        // --- Load daftar penumpang ke combo box ---
         private async Task LoadPassengerList()
         {
             using var context = new AppDbContext();
             var passengers = await context.Passengers.OrderBy(p => p.FullName).ToListAsync();
             comboPassenger.DataSource = passengers;
-            comboPassenger.DisplayMember = "FullName";   // tampilkan nama penumpang
-            comboPassenger.ValueMember = "PassengerId";  // ambil id penumpang
-            comboPassenger.SelectedIndex = -1;           // belum ada yang dipilih
+            comboPassenger.DisplayMember = "FullName";
+            comboPassenger.ValueMember = "PassengerId";
+            comboPassenger.SelectedIndex = -1;
         }
 
-        // --- Load daftar bus ke combo box ---
         private async Task LoadBusList()
         {
             using var context = new AppDbContext();
             var buses = await context.Buses.OrderBy(b => b.BusName).ToListAsync();
             comboBus.DataSource = buses;
-            comboBus.DisplayMember = "BusName"; // tampilkan nama bus
-            comboBus.ValueMember = "BusId";     // ambil id bus
+            comboBus.DisplayMember = "BusName";
+            comboBus.ValueMember = "BusId";
             comboBus.SelectedIndex = -1;
         }
 
-        // --- Load daftar penjualan ke DataGridView ---
         private async Task LoadSalesList()
         {
             using var context = new AppDbContext();
@@ -84,7 +81,7 @@ namespace bus_ticket_booking.Forms
 
             dataGridView1.DataSource = sales;
             if (dataGridView1.Columns.Contains("SaleId"))
-                dataGridView1.Columns["SaleId"].Visible = false; // sembunyikan kolom ID dari tampilan
+                dataGridView1.Columns["SaleId"].Visible = false;
         }
 
         private void ComboPassenger_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,7 +89,6 @@ namespace bus_ticket_booking.Forms
             if (_isInitializing) return;
         }
 
-        // --- Saat comboBus diubah, tampilkan harga tiket otomatis ---
         private async void ComboBus_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isInitializing) return;
@@ -103,93 +99,65 @@ namespace bus_ticket_booking.Forms
             var bus = await context.Buses.FirstOrDefaultAsync(b => b.BusId == busId);
 
             if (bus != null)
-                txtTotalPrice.Text = bus.TicketPrice.ToString("N0"); // tampilkan harga
+                txtTotalPrice.Text = bus.TicketPrice.ToString("N0");
             else
                 txtTotalPrice.Clear();
         }
 
-        // --- Bagian VALIDASI FORM sebelum menyimpan ---
         private bool ValidateForm()
         {
-            // Validasi penumpang
-            if (comboPassenger.SelectedIndex == -1 || comboPassenger.SelectedValue == null)
+            if (comboPassenger.SelectedIndex == -1)
             {
                 MessageBox.Show("Pilih penumpang terlebih dahulu.");
                 return false;
             }
 
-            // Validasi bus
-            if (comboBus.SelectedIndex == -1 || comboBus.SelectedValue == null)
+            if (comboBus.SelectedIndex == -1)
             {
                 MessageBox.Show("Pilih bus terlebih dahulu.");
                 return false;
             }
 
-            // Validasi harga
             if (string.IsNullOrWhiteSpace(txtTotalPrice.Text))
             {
                 MessageBox.Show("Harga tidak boleh kosong.");
                 return false;
             }
 
-            // Validasi nilai harga
             if (!decimal.TryParse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""), out decimal price) || price <= 0)
             {
                 MessageBox.Show("Harga harus berupa angka dan lebih dari 0.");
                 return false;
             }
 
-            // Validasi tanggal
-            if (dtSaleDate.Value == DateTime.MinValue)
-            {
-                MessageBox.Show("Tanggal tidak valid.");
-                return false;
-            }
-
-            return true; // semua valid
+            return true;
         }
 
-        // --- TOMBOL TAMBAH DATA PENJUALAN ---
+        // === TAMBAH PENJUALAN ===
         private async void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (!ValidateForm()) return; // pastikan data valid
+            if (!ValidateForm()) return;
 
             try
             {
-                using var context = new AppDbContext();
-
-                // Ambil nilai dari input
-                int passengerId = (int)comboPassenger.SelectedValue;
-                int busId = (int)comboBus.SelectedValue;
-                decimal totalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""));
-
-                // Pastikan data benar-benar ada di DB
-                var passengerExists = await context.Passengers.AnyAsync(p => p.PassengerId == passengerId);
-                var busExists = await context.Buses.AnyAsync(b => b.BusId == busId);
-
-                if (!passengerExists || !busExists)
-                {
-                    MessageBox.Show("Data penumpang atau bus tidak valid.");
-                    return;
-                }
-
-                // --- INPUT DATA BARU ---
                 var sale = new Sale
                 {
-                    PassengerId = passengerId,
-                    BusId = busId,
+                    PassengerId = (int)comboPassenger.SelectedValue,
+                    BusId = (int)comboBus.SelectedValue,
                     SaleDate = DateTime.SpecifyKind(dtSaleDate.Value, DateTimeKind.Utc),
                     Quantity = 1,
-                    TotalPrice = totalPrice
+                    TotalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""))
                 };
 
-                context.Sales.Add(sale); // tambahkan ke database
-                await context.SaveChangesAsync();
+                using var context = new AppDbContext();
+                var saleService = new SaleService(context);
 
-                await LoadSalesList(); // refresh tampilan tabel
+                await saleService.AddAsync(sale);
+
+                await LoadSalesList();
                 ClearForm();
 
-                MessageBox.Show("Transaksi berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tiket berhasil dipesan dan kursi berkurang!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -197,7 +165,7 @@ namespace bus_ticket_booking.Forms
             }
         }
 
-        // --- TOMBOL UPDATE DATA PENJUALAN ---
+        // === UPDATE PENJUALAN ===
         private async void BtnUpdate_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -206,43 +174,34 @@ namespace bus_ticket_booking.Forms
                 return;
             }
 
-            if (!ValidateForm()) return;
-
             if (!int.TryParse(dataGridView1.CurrentRow.Cells["SaleId"].Value?.ToString(), out int saleId) || saleId <= 0)
             {
                 MessageBox.Show("ID penjualan tidak valid.");
                 return;
             }
 
+            if (!ValidateForm()) return;
+
             try
             {
-                using var context = new AppDbContext();
-                var sale = await context.Sales.FindAsync(saleId);
-                if (sale == null)
+                var sale = new Sale
                 {
-                    MessageBox.Show("Data tidak ditemukan.");
-                    return;
-                }
+                    SaleId = saleId,
+                    PassengerId = (int)comboPassenger.SelectedValue,
+                    BusId = (int)comboBus.SelectedValue,
+                    Quantity = 1,
+                    SaleDate = DateTime.SpecifyKind(dtSaleDate.Value, DateTimeKind.Utc),
+                    TotalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""))
+                };
 
-                // --- EDIT DATA ---
-                int passengerId = (int)comboPassenger.SelectedValue;
-                int busId = (int)comboBus.SelectedValue;
-                decimal totalPrice = decimal.Parse(txtTotalPrice.Text.Replace(".", "").Replace(",", ""));
+                using var context = new AppDbContext();
+                var saleService = new SaleService(context);
 
-                sale.PassengerId = passengerId;
-                sale.BusId = busId;
-                sale.SaleDate = DateTime.SpecifyKind(dtSaleDate.Value, DateTimeKind.Utc);
-                sale.TotalPrice = totalPrice;
-
-                context.Sales.Update(sale);
-                await context.SaveChangesAsync();
-
+                await saleService.UpdateAsync(sale);
                 await LoadSalesList();
-                await LoadPassengerList();
-                await LoadBusList();
-
                 ClearForm();
-                MessageBox.Show("Data berhasil diperbarui!");
+
+                MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -250,7 +209,7 @@ namespace bus_ticket_booking.Forms
             }
         }
 
-        // --- TOMBOL HAPUS DATA PENJUALAN ---
+        // === HAPUS PENJUALAN ===
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -265,27 +224,20 @@ namespace bus_ticket_booking.Forms
                 return;
             }
 
-            // Konfirmasi penghapusan
             if (MessageBox.Show("Yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
             try
             {
                 using var context = new AppDbContext();
-                var sale = await context.Sales.FindAsync(saleId);
-                if (sale == null)
-                {
-                    MessageBox.Show("Data tidak ditemukan.");
-                    return;
-                }
+                var saleService = new SaleService(context);
 
-                context.Sales.Remove(sale); // Hapus data
-                await context.SaveChangesAsync();
+                await saleService.DeleteAsync(saleId);
 
                 await LoadSalesList();
                 ClearForm();
 
-                MessageBox.Show("Data berhasil dihapus.");
+                MessageBox.Show("Data berhasil dihapus dan kursi dikembalikan.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -293,13 +245,11 @@ namespace bus_ticket_booking.Forms
             }
         }
 
-        // --- Tombol CLEAR FORM ---
         private void BtnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
 
-        // --- Membersihkan seluruh input ---
         private void ClearForm()
         {
             comboPassenger.SelectedIndex = -1;
@@ -308,16 +258,13 @@ namespace bus_ticket_booking.Forms
             dtSaleDate.Value = DateTime.Now;
         }
 
-        // --- Saat user klik baris di DataGridView, isi form otomatis ---
+        // --- Saat klik tabel, isi form otomatis ---
         private async void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || dataGridView1.Rows.Count == 0) return;
+            if (e.RowIndex < 0) return;
 
             var row = dataGridView1.Rows[e.RowIndex];
-            if (row == null || row.Cells["SaleId"]?.Value == null) return;
-
-            if (!int.TryParse(row.Cells["SaleId"].Value.ToString(), out int saleId) || saleId <= 0)
-                return;
+            if (!int.TryParse(row.Cells["SaleId"].Value?.ToString(), out int saleId) || saleId <= 0) return;
 
             using var context = new AppDbContext();
             var sale = await context.Sales
@@ -327,20 +274,15 @@ namespace bus_ticket_booking.Forms
 
             if (sale == null) return;
 
-            _isInitializing = true; // supaya comboBox tidak trigger event saat isi ulang
+            _isInitializing = true;
 
-            // pastikan list sudah terisi
-            if (comboPassenger.DataSource == null || comboBus.DataSource == null)
-            {
-                await LoadPassengerList();
-                await LoadBusList();
-            }
+            if (comboPassenger.DataSource == null) await LoadPassengerList();
+            if (comboBus.DataSource == null) await LoadBusList();
 
-            // --- ISI ULANG DATA KE FORM ---
             comboPassenger.SelectedValue = sale.PassengerId;
             comboBus.SelectedValue = sale.BusId;
             txtTotalPrice.Text = sale.TotalPrice.ToString("N0");
-            dtSaleDate.Value = sale.SaleDate == DateTime.MinValue ? DateTime.Now : sale.SaleDate.ToLocalTime();
+            dtSaleDate.Value = sale.SaleDate.ToLocalTime();
 
             _isInitializing = false;
         }
